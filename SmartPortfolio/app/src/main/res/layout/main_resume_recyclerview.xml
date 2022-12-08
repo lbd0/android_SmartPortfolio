@@ -31,7 +31,7 @@
             android:textStyle="italic"
             android:textSize="16dp"
             android:textColor="@color/font"
-            android:id="@+id/main_resume_subdata"
+            android:id="@+id/main_resume_subdata"/>
     </LinearLayout>
 
 </LinearLayout>
