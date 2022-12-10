@@ -10,4 +10,5 @@
     <color name="font">#274259</color>
     <color name="background">#F2F2F2</color>
     <color name="button">#AED9DA</color>
+    <color name="card">#FFF5F5</color>
 </resources>

@@ -16,6 +16,12 @@ import com.example.smartportfolio.databinding.FragmentIntroOneBinding
 import org.w3c.dom.Text
 
 class IntroActivity : AppCompatActivity() {
+    companion object {
+        // 읽기모드인지 쓰기모드인지 확인하기 위함
+        final val READMODE = "read mode"
+        final val WRITEMODE = "wrtie mode"
+        var mode = READMODE
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_intro)
@@ -43,10 +49,10 @@ class IntroActivity : AppCompatActivity() {
                 onBtn.setOnClickListener {
                     // 비밀번호 맞으면 쓰기모드로 변경 (비밀번호는 1234)
                     val password = dialogView.findViewById<EditText>(R.id.password).text
-                    Log.d("bada", "$password")
                     if(password.toString().equals("1234")) {
                         wrongTxt.setText("")
                         alertDialog.dismiss()
+                        mode = WRITEMODE
                         changeFragment(IntroOneFragment())
                     }
                     else {  // 비밀번호 틀리면 틀렸다는 텍스트 뜨고 비밀번호 창 안 꺼짐
@@ -65,6 +71,7 @@ class IntroActivity : AppCompatActivity() {
             } else {
                 // 읽기모드로 변경
                 changeFragment(IntroTwoFragment())
+                mode = READMODE
             }
         }
         // 첫 화면은 읽기모드
