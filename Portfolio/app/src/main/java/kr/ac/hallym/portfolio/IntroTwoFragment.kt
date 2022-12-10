@@ -1,6 +1,8 @@
 package kr.ac.hallym.portfolio
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +20,16 @@ class IntroTwoFragment : Fragment() {
         //return inflater.inflate(R.layout.fragment_intro_two, container, false)
         val binding = FragmentIntroTwoBinding.inflate(inflater, container, false)
 
-        binding.userName.setText(IntroOneFragment.userName)
+        var prefs = context?.getSharedPreferences("name", 0)
+        val name = prefs?.getString("name", "")
+
+        prefs = context?.getSharedPreferences("img", 0)
+        val sImg = prefs?.getString("img", "")
+        val encodeByte = Base64.decode(sImg, Base64.DEFAULT)
+        val img = BitmapFactory.decodeByteArray(encodeByte, 0 , encodeByte.size)
+
+        binding.userName.setText(name)
+        binding.introUserImageView.setImageBitmap(img)
 
         return binding.root
     }

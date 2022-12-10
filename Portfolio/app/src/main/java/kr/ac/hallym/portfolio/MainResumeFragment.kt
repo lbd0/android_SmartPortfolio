@@ -21,8 +21,6 @@ import kr.ac.hallym.portfolio.databinding.MainResumeRecyclerviewBinding
 // 이력 화면
 class MainResumeFragment : Fragment() {
     lateinit var adapter : MyAdapterResume
-    var contents : MutableList<String>? = null
-    var contents_sub : MutableList<String>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,9 +31,14 @@ class MainResumeFragment : Fragment() {
 
         val binding = FragmentMainResumeBinding.inflate(inflater, container, false)
 
+        val contents = mutableListOf<String>()
+        val contents_sub = mutableListOf<String>()
+
         val requestLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) {
-            Log.d("bada", "${it.data?.getStringExtra("addResume")}")
+            contents.add(it.data?.getStringExtra("addResumeTitle").toString())
+            contents_sub.add(it.data?.getStringExtra("addResumeDate").toString())
+            adapter.notifyDataSetChanged()
         }
 
         if(IntroActivity.mode == IntroActivity.READMODE) binding.mainResumeFab.visibility = View.GONE
@@ -44,17 +47,19 @@ class MainResumeFragment : Fragment() {
             requestLauncher.launch(intent)
         }
 
-        val db = DBHelper(activity as Context).readableDatabase
+        val db = DBHelper(activity!!).readableDatabase
         val cursor = db.rawQuery("select * from RESUME_TB", null)
         cursor.run {
             while(moveToNext()) {
-                contents?.add(cursor.getString(1))
+                contents.add(cursor.getString(1))
+                contents_sub.add(cursor.getString(2))
             }
         }
         db.close()
 
         binding.mainResumeRecyclerview.layoutManager = LinearLayoutManager(activity)
-        binding.mainResumeRecyclerview.adapter = MyAdapterResume(contents, contents_sub)
+        adapter = MyAdapterResume(contents, contents_sub)
+        binding.mainResumeRecyclerview.adapter = adapter
 
         return binding.root
     }

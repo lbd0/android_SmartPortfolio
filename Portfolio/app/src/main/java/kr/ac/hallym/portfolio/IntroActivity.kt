@@ -69,6 +69,10 @@ class IntroActivity : AppCompatActivity() {
                 alertDialog.show()
             } else {
                 // 읽기모드로 변경
+                val prefs = getSharedPreferences("name", 0)
+                prefs?.edit()?.putString("name", R.id.intro_edit.toString())?.apply()
+                Log.d("bada", "${R.id.intro_edit}")
+
                 changeFragment(IntroTwoFragment())
                 mode = READMODE
             }

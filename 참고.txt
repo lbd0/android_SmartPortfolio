@@ -1,0 +1,2 @@
+셰어드 프리퍼런스 참고
+https://blog.yena.io/studynote/2017/12/18/Android-Kotlin-SharedPreferences.html

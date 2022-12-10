@@ -1,5 +1,6 @@
 package kr.ac.hallym.portfolio
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
@@ -8,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +20,7 @@ import java.util.zip.GZIPOutputStream
 
 // 포트폴리오 화면
 class MainPortfolioFragment : Fragment() {
+    lateinit var adapter : MyAdapterPf
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,20 +31,42 @@ class MainPortfolioFragment : Fragment() {
 
         val binding = FragmentMainPortfolioBinding.inflate(inflater, container, false)
 
-        val contents1 = mutableListOf<Int>(R.drawable.user_basic, R.drawable.resume_pic2)
-        val contents3 = mutableListOf<String>("동화고등학교 졸업", "한림대학교 입학")
-        val contents2 = mutableListOf<String>("2020.1.26", "2020.3.1")
+        val contents1 = mutableListOf<Int>(R.drawable.user_basic,R.drawable.user_basic,R.drawable.user_basic)
+        val contents2 = mutableListOf<String>()
+        val contents3 = mutableListOf<String>()
+
+        val requestLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()) {
+            contents2.add(it.data?.getStringExtra("addPfTitle").toString())
+            contents3.add(it.data?.getStringExtra("addPfDetail").toString())
+            adapter.notifyDataSetChanged()
+        }
+
+        if(IntroActivity.mode === IntroActivity.READMODE) binding.mainPfFab.visibility = View.GONE
+        binding.mainPfFab.setOnClickListener {
+            val intent = Intent(activity, AddPortfolioActivity::class.java)
+            requestLauncher.launch(intent)
+        }
+
+        val db = DBHelper(activity!!).readableDatabase
+        val cursor = db.rawQuery("select * from PF_TB", null)
+        cursor.run {
+            while(moveToNext()) {
+                contents2.add(cursor.getString(1))
+                contents3.add(cursor.getString(2))
+            }
+        }
+        db.close()
+
 
         binding.mainPfRecyclerview.layoutManager = LinearLayoutManager(activity)
-        binding.mainPfRecyclerview.adapter = MyAdapterPf(contents1, contents2, contents3)
+        adapter = MyAdapterPf(contents1, contents2, contents3)
+        binding.mainPfRecyclerview.adapter = adapter
         binding.mainPfRecyclerview.addItemDecoration(
             DividerItemDecoration(activity, LinearLayoutManager.VERTICAL)
         )
 
-        if(IntroActivity.mode === IntroActivity.READMODE) binding.mainPfFab.visibility = View.GONE
-        binding.mainPfFab.setOnClickListener {
-            Log.d("bada", "1")
-        }
+
         return binding.root
     }
 

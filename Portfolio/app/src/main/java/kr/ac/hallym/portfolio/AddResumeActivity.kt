@@ -28,14 +28,15 @@ class AddResumeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId) {
         R.id.menu_add_save -> {
             val inputTitle = binding.addResumeTilte.text.toString()
-            Log.d("bada", "$inputTitle")
             val inputDate = binding.addResumeDate.text.toString()
             val db = DBHelper(this).writableDatabase
-            db.execSQL("insert into RESUME_TB (title) values (?)",
-                arrayOf<String>(inputTitle))
+            db.execSQL("insert into RESUME_TB (title, date) values (?, ?)",
+                arrayOf<String>(inputTitle, inputDate))
             db.close()
 
-            var intent = intent.putExtra("addResume", inputTitle)
+            var intent = intent.putExtra("addResumeTitle", inputTitle)
+            setResult(Activity.RESULT_OK, intent)
+            intent = intent.putExtra("addResumeDate", inputDate)
             setResult(Activity.RESULT_OK, intent)
             finish()
             true
