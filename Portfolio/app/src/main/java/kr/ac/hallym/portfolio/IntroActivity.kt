@@ -30,6 +30,8 @@ class IntroActivity : AppCompatActivity() {
         // 첫 화면은 토글 꺼짐
         if(binding.introToggle.isChecked) binding.introToggle.toggle()
 
+        var cancel = false // cancel 버튼 눌렀는지 확인
+
         // 읽기모드 /  쓰기모드 변경 토글 이벤트
         binding.introToggle.setOnCheckedChangeListener { buttonView, isChecked ->
             // 쓰기모드로 변경 시
@@ -58,10 +60,12 @@ class IntroActivity : AppCompatActivity() {
                         dialogView.findViewById<EditText>(R.id.password).setText("")
                         wrongTxt.setText("Wrong!")
                     }
+                    cancel = false
                 }
 
                 // cancle 버튼 눌렀을 때 토글은 읽기모드 토글로 변경, 쓰기모드로 변경 X
                 cancleBtn.setOnClickListener {
+                    cancel = true
                     binding.introToggle.toggle()
                     alertDialog.dismiss()
                 }
@@ -69,13 +73,17 @@ class IntroActivity : AppCompatActivity() {
                 alertDialog.show()
             } else {
                 // 읽기모드로 변경
-                val prefs = getSharedPreferences("name", 0)
-                prefs?.edit()?.putString("name", R.id.intro_edit.toString())?.apply()
-                Log.d("bada", "${R.id.intro_edit}")
+                if(!cancel) {   // 쓰기모드 -> 읽기모드 일 때 수정한 이름 저장
+                    val name = findViewById<EditText>(R.id.intro_edit)
+                    val prefs = getSharedPreferences("name", 0)
+                    if(name.text.toString() != "")
+                        prefs?.edit()?.putString("name", name.text.toString())?.apply()
 
+                }
                 changeFragment(IntroTwoFragment())
                 mode = READMODE
             }
+
         }
         // 첫 화면은 읽기모드
         changeFragment(IntroTwoFragment())

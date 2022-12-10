@@ -41,12 +41,15 @@ class IntroOneFragment : Fragment() {
 
 
         prefs = context?.getSharedPreferences("img", 0)
-        val sImg = prefs?.getString("img", "")
-        val encodeByte = Base64.decode(sImg, Base64.DEFAULT)
-        val img = BitmapFactory.decodeByteArray(encodeByte, 0 , encodeByte.size)
+        if(prefs == null) {
+            binding.introUserImageView.setImageResource(R.drawable.user_basic)
+        } else {
+            val sImg = prefs?.getString("img", "")
+            val encodeByte = Base64.decode(sImg, Base64.DEFAULT)
+            val img = BitmapFactory.decodeByteArray(encodeByte, 0 , encodeByte.size)
 
-        binding.introUserImageView.setImageBitmap(img)
-
+            binding.introUserImageView.setImageBitmap(img)
+        }
 
         val requestGalleryLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) {
