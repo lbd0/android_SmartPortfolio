@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textColor="@color/font"
-            android:singleLine="true"
+            android:autoLink="web|email"
             android:id="@+id/main_pf_detailtxt" />
     </LinearLayout>
 

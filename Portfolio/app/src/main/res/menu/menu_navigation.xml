@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:icon="@drawable/logout"
-        android:title="LOGOUT"
+        android:title="@string/logout"
         android:id="@+id/logout"/>
 
     <item android:icon="@drawable/write_mode"
-        android:title="WRITE MODE"
+        android:title="@string/wm"
         android:id="@+id/wm"/>
 
     <item android:icon="@drawable/read_mode"
-        android:title="READ MODE"
+        android:title="@string/rm"
         android:id="@+id/rm"/>
 
 </menu>

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.contentValuesOf
 import kr.ac.hallym.portfolio.databinding.FragmentIntroOneBinding
@@ -37,11 +38,23 @@ class IntroOneFragment : Fragment() {
 
         var prefs = context?.getSharedPreferences("name", 0)
 
-        binding.introEdit.hint = "${prefs?.getString("name", "")}"
+        if(prefs?.getString("name", "") == "") {
+            binding.introEdit.setText(R.string.name)
+        }
+        binding.introEdit.setText(prefs?.getString("name", ""))
 
+
+        binding.introSavebtn.setOnClickListener {
+            prefs = context?.getSharedPreferences("name", 0)
+            if(binding.introEdit.text.toString() != "") {
+                prefs?.edit()?.putString("name", binding.introEdit.text.toString())?.apply()
+                Toast.makeText(activity, R.string.saved, Toast.LENGTH_SHORT).show()
+            }
+
+        }
 
         prefs = context?.getSharedPreferences("img", 0)
-        if(prefs == null) {
+        if(prefs?.getString("img", "") == "") {
             binding.introUserImageView.setImageResource(R.drawable.user_basic)
         } else {
             val sImg = prefs?.getString("img", "")
@@ -51,6 +64,7 @@ class IntroOneFragment : Fragment() {
             binding.introUserImageView.setImageBitmap(img)
         }
 
+        // 갤러리 연동
         val requestGalleryLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) {
             try {
@@ -89,6 +103,7 @@ class IntroOneFragment : Fragment() {
             intent.type = "image/*"
             requestGalleryLauncher.launch(intent)
         }
+
 
 
         return binding.root

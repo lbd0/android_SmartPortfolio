@@ -1,16 +1,39 @@
 <resources>
     <string name="app_name">Portfolio</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="drawer_opened">Opened Drawer</string>
     <string name="drawer_closed">Closed Drawer</string>
-    <string name="title_activity_main2">MainActivity2</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
+    <string name="name">Name</string>
+    <string name="birth">Birth</string>
+    <string name="major">Major</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="git">Git</string>
+    <string name="more">About Me</string>
+    <string name="info">INFOMATION</string>
+    <string name="resum">RESUME</string>
+    <string name="pf">PORTFOLIO</string>
+    <string name="main_rm">Main</string>
+    <string name="main_wm">Main_WRITE</string>
+    <string name="read">READ</string>
+    <string name="write">WRITE</string>
+    <string name="logout">LOGOUT</string>
+    <string name="rm">READ MODE</string>
+    <string name="wm">WRITE MODE</string>
+    <string name="nav">NAVIGATION</string>
+    <string name="title">Title</string>
+    <string name="date">Date</string>
+    <string name="detail">Detail</string>
+    <string name="add_res">Add Resume</string>
+    <string name="add_pf">Add Portfolio</string>
+    <string name="edit_info">Edit Infomation</string>
+    <string name="save">Save</string>
+    <string name="login">Enter the Password</string>
+    <string name="pw">password</string>
+    <string name="ok">OK</string>
+    <string name="cancle">CANCLE</string>
+    <string name="wrong">Wrong!!!</string>
+    <string name="saved">Saved!!!</string>
+    <string name="setting">Setting</string>
+    <string name="newpass">New Password</string>
+    <string name="newpw">new password</string>
 </resources>

@@ -48,7 +48,7 @@ class MainResumeFragment : Fragment() {
         }
 
         val db = DBHelper(activity!!).readableDatabase
-        val cursor = db.rawQuery("select * from RESUME_TB", null)
+        val cursor = db.rawQuery("select * from RESUME_TB order by date", null)
         cursor.run {
             while(moveToNext()) {
                 contents.add(cursor.getString(1))

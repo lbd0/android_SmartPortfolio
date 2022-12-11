@@ -1,2 +1,5 @@
 셰어드 프리퍼런스 참고
 https://blog.yena.io/studynote/2017/12/18/Android-Kotlin-SharedPreferences.html
+
+리소스 -> bitmap
+https://pororiri.tistory.com/entry/Androidresource-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0

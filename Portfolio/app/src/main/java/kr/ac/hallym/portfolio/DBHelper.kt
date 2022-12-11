@@ -11,13 +11,12 @@ class DBHelper (context: Context) : SQLiteOpenHelper(context, "smartpfdb", null,
                 "_id integer primary key autoincrement," +
                 "title not null," +
                 "date not null)" )
-        Log.d("bada", "11")
 
         db?.execSQL("create table if not exists PF_TB(" +
                 "_id integer primary key autoincrement," +
+                "img not null," +
                 "title not null," +
-                "date not null)" )
-        Log.d("bada", "22")
+                "detail not null)" )
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

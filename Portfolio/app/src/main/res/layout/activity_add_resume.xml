@@ -13,14 +13,14 @@
         android:layout_height="?attr/actionBarSize"
         android:id="@+id/add_resume_toolbar"
         app:layout_collapseMode="pin"
-        app:title="Add Resume"
+        app:title="@string/add_res"
         app:titleTextColor="@color/font"
         android:background="@color/button"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title"
+        android:text="@string/title"
         android:textStyle="bold"
         android:textSize="25dp"
         android:textColor="@color/font"
@@ -32,14 +32,14 @@
         android:layout_height="wrap_content"
         android:textColor="@color/font"
         android:textSize="15dp"
-        android:hint="title"
+        android:hint="@string/title"
         android:layout_margin="10dp"
         android:id="@+id/add_resume_tilte"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Date"
+        android:text="@string/date"
         android:textStyle="bold"
         android:textSize="25dp"
         android:textColor="@color/font"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/font"
         android:textSize="15dp"
-        android:hint="date"
+        android:hint="@string/date"
         android:inputType="date"
         android:layout_margin="10dp"
         android:id="@+id/add_resume_date"/>

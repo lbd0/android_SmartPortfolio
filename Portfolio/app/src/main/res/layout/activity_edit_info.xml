@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddPortfolioActivity"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/edit_info_toolbar"
+        app:layout_collapseMode="pin"
+        app:title="@string/edit_info"
+        app:titleTextColor="@color/font"
+        android:background="@color/button"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/user_basic"
+        android:layout_margin="10dp"
+        android:id="@+id/edit_user_image" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/name"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/font"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="@color/font"
+            android:textSize="15dp"
+            android:hint="@string/name"
+            android:layout_margin="10dp"
+            android:inputType="text"
+            android:id="@+id/edit_info_name"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/birth"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/font"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="@color/font"
+            android:textSize="15dp"
+            android:hint="@string/birth"
+            android:layout_margin="10dp"
+            android:inputType="date"
+            android:id="@+id/edit_info_birth"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/major"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/font"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="@color/font"
+            android:textSize="15dp"
+            android:hint="@string/major"
+            android:layout_margin="10dp"
+            android:inputType="text"
+            android:id="@+id/edit_info_major"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/phone"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/font"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="@color/font"
+            android:textSize="15dp"
+            android:hint="@string/phone"
+            android:layout_margin="10dp"
+            android:inputType="phone"
+            android:id="@+id/edit_info_phone"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/email"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/font"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="@color/font"
+            android:textSize="15dp"
+            android:hint="@string/email"
+            android:layout_margin="10dp"
+            android:inputType="textEmailAddress"
+            android:id="@+id/edit_info_email"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/git"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/font"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="@color/font"
+            android:textSize="15dp"
+            android:hint="@string/git"
+            android:layout_margin="10dp"
+            android:inputType="textWebEditText"
+            android:id="@+id/edit_info_git"/>
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/more"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:textColor="@color/font"
+        android:gravity="center"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/font"
+        android:textSize="15dp"
+        android:hint="@string/more"
+        android:layout_margin="10dp"
+        android:id="@+id/edit_info_more"/>
+
+</LinearLayout>

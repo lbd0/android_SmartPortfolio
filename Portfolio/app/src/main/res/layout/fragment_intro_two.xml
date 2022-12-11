@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SMART PORTFOLIO"
+        android:text="@string/app_name"
         android:textStyle="bold"
         android:textSize="40dp"
         android:textColor="@color/font"
@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NAME :"
+            android:text="@string/name"
             android:textColor="@color/font"
             android:textSize="30dp"
             android:textStyle="bold"
@@ -56,8 +56,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/font"
             android:textSize="30dp"
-            android:text="LEE BADA"
             android:textStyle="bold"
+            android:layout_marginLeft="5dp"
             android:gravity="center"/>
 
     </LinearLayout>

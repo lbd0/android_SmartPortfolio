@@ -14,8 +14,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:textOn="WRITE"
-        android:textOff="READ"
+        android:textOn="@string/write"
+        android:textOff="@string/read"
         android:id="@+id/intro_toggle"/>
 
     <LinearLayout
@@ -35,7 +35,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="MAIN"
+        android:text="@string/main_rm"
         android:textSize="30dp"
         android:textColor="@color/font"
         android:layout_marginTop="50dp"

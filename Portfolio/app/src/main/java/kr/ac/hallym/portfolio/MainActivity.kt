@@ -28,7 +28,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if(IntroActivity.mode === IntroActivity.WRITEMODE)  binding.mainToolbar.title = "Main_WriteMode"
+        if(IntroActivity.mode === IntroActivity.WRITEMODE)  {
+            binding.mainToolbar.setTitle(R.string.main_wm)
+
+        }
         setSupportActionBar(binding.mainToolbar)
 
 
@@ -36,9 +39,9 @@ class MainActivity : AppCompatActivity() {
         binding.mainViewpager.adapter = adapter
         TabLayoutMediator(binding.mainTabs, binding.mainViewpager) {tab, position ->
             when(position) {
-                0 -> tab.text = "Infomation"
-                1 -> tab.text = "Resume"
-                2 -> tab.text = "Portfolio"
+                0 -> tab.setText(R.string.pf)
+                1 -> tab.setText(R.string.resum)
+                2 -> tab.setText(R.string.pf)
             }
         }.attach()
 
@@ -79,9 +82,10 @@ class MainActivity : AppCompatActivity() {
 
                     // ok 버튼 눌렸을 때
                     onBtn.setOnClickListener {
-                        // 비밀번호 맞으면 쓰기모드로 변경 (비밀번호는 1234)
+                        // 비밀번호 맞으면 쓰기모드로 변경
                         val password = dialogView.findViewById<EditText>(R.id.password).text
-                        if (password.toString().equals("1234")) {
+                        val prefs = getSharedPreferences("password", 0)
+                        if (password.toString() == prefs.getString("password", "")) {
                             wrongTxt.setText("")
                             alertDialog.dismiss()
                             IntroActivity.mode = IntroActivity.WRITEMODE
@@ -89,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                             startActivity(intent)
                         } else {  // 비밀번호 틀리면 틀렸다는 텍스트 뜨고 비밀번호 창 안 꺼짐
                             dialogView.findViewById<EditText>(R.id.password).setText("")
-                            wrongTxt.setText("Wrong!")
+                            wrongTxt.setText(R.string.wrong)
                         }
                     }
                     // cancle 버튼 눌렀을 때 쓰기모드로 변경 X
@@ -111,10 +115,44 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        if(IntroActivity.mode === IntroActivity.WRITEMODE) {
+            menuInflater.inflate(R.menu.menu_main, menu)
+            return true
+        }
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(toggle.onOptionsItemSelected(item)) {
             return true
         }
+
+        if(item.itemId == R.id.setting) {
+            val dialogView = layoutInflater.inflate(R.layout.setting, null)
+            val alertDialog = AlertDialog.Builder(this)
+                .setView(dialogView)
+                .create()
+
+            val newPassword = dialogView.findViewById<EditText>(R.id.new_password)
+            val okBtn = dialogView.findViewById<Button>(R.id.new_ok_btn)
+            val cancleBtn = dialogView.findViewById<Button>(R.id.new_cancle_btn)
+
+            okBtn.setOnClickListener {
+                val newPw = newPassword.text.toString()
+                val prefs = getSharedPreferences("password",0)
+                prefs?.edit()?.putString("password", newPw)?.apply()
+                alertDialog.dismiss()
+            }
+
+            cancleBtn.setOnClickListener {
+                alertDialog.dismiss()
+            }
+
+            alertDialog.show()
+        }
+
         return super.onOptionsItemSelected(item)
     }
 }

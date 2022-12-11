@@ -43,14 +43,16 @@ class IntroActivity : AppCompatActivity() {
                     .create()
 
                 val wrongTxt = dialogView.findViewById<TextView>(R.id.wrongTxt)
-                val onBtn = dialogView.findViewById<Button>(R.id.ok_btn)
+                val okBtn = dialogView.findViewById<Button>(R.id.ok_btn)
                 val cancleBtn = dialogView.findViewById<Button>(R.id.cancle_btn)
 
                 // ok 버튼 눌렸을 때
-                onBtn.setOnClickListener {
-                    // 비밀번호 맞으면 쓰기모드로 변경 (비밀번호는 1234)
+                okBtn.setOnClickListener {
+                    // 비밀번호 맞으면 쓰기모드로 변경 (처음 비밀번호는 "")
                     val password = dialogView.findViewById<EditText>(R.id.password).text
-                    if(password.toString().equals("1234")) {
+                    val prefs = getSharedPreferences("password", 0)
+
+                    if(password.toString() == prefs.getString("password", "")) {
                         wrongTxt.setText("")
                         alertDialog.dismiss()
                         mode = WRITEMODE
@@ -58,7 +60,7 @@ class IntroActivity : AppCompatActivity() {
                     }
                     else {  // 비밀번호 틀리면 틀렸다는 텍스트 뜨고 비밀번호 창 안 꺼짐
                         dialogView.findViewById<EditText>(R.id.password).setText("")
-                        wrongTxt.setText("Wrong!")
+                        wrongTxt.setText(R.string.wrong)
                     }
                     cancel = false
                 }
@@ -73,13 +75,6 @@ class IntroActivity : AppCompatActivity() {
                 alertDialog.show()
             } else {
                 // 읽기모드로 변경
-                if(!cancel) {   // 쓰기모드 -> 읽기모드 일 때 수정한 이름 저장
-                    val name = findViewById<EditText>(R.id.intro_edit)
-                    val prefs = getSharedPreferences("name", 0)
-                    if(name.text.toString() != "")
-                        prefs?.edit()?.putString("name", name.text.toString())?.apply()
-
-                }
                 changeFragment(IntroTwoFragment())
                 mode = READMODE
             }
@@ -87,8 +82,6 @@ class IntroActivity : AppCompatActivity() {
         }
         // 첫 화면은 읽기모드
         changeFragment(IntroTwoFragment())
-
-
 
         // main버튼 누르면 splash 화면으로
         binding.introBtn.setOnClickListener {
