@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         binding.mainViewpager.adapter = adapter
         TabLayoutMediator(binding.mainTabs, binding.mainViewpager) {tab, position ->
             when(position) {
-                0 -> tab.setText(R.string.pf)
+                0 -> tab.setText(R.string.info)
                 1 -> tab.setText(R.string.resum)
                 2 -> tab.setText(R.string.pf)
             }
