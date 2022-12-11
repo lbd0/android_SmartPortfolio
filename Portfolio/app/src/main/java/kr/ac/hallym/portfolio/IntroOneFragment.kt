@@ -23,10 +23,7 @@ import java.util.prefs.Preferences
 
 // 인트로 쓰기모드 프래그먼트
 class IntroOneFragment : Fragment() {
-    companion object {
-        var userName:String? = null
-        var userImg :Bitmap? = null
-    }
+    var sImg: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +47,10 @@ class IntroOneFragment : Fragment() {
                 prefs?.edit()?.putString("name", binding.introEdit.text.toString())?.apply()
                 Toast.makeText(activity, R.string.saved, Toast.LENGTH_SHORT).show()
             }
+            val prefs = context?.getSharedPreferences("img", 0)
+            if(sImg != null)
+                prefs?.edit()?.putString("img", sImg)?.apply()
+            Toast.makeText(activity, R.string.saved, Toast.LENGTH_SHORT).show()
 
         }
 
@@ -85,10 +86,7 @@ class IntroOneFragment : Fragment() {
                     val baos= ByteArrayOutputStream()
                     bitmap.compress(Bitmap.CompressFormat.PNG, 70, baos)
                     val byte = baos.toByteArray()
-                    val sImg = Base64.encodeToString(byte, Base64.DEFAULT)
-
-                    val prefs = context?.getSharedPreferences("img", 0)
-                    prefs?.edit()?.putString("img", sImg)?.apply()
+                    sImg = Base64.encodeToString(byte, Base64.DEFAULT)
 
                 }?: let {
                     Log.d("bada", "bitmap null")

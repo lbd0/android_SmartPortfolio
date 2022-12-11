@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -22,6 +23,8 @@
             android:textSize="20dp"
             android:textColor="@color/font"
             android:textStyle="bold"
+            android:maxLines="1"
+            android:autoSizeTextType="uniform"
             android:id="@+id/main_resume_data"/>
 
         <TextView

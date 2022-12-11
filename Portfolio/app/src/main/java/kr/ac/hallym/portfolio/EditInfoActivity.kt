@@ -170,7 +170,8 @@ class EditInfoActivity : AppCompatActivity() {
             prefs?.edit()?.putString("infoMore", inputMore)?.apply()
 
             prefs = getSharedPreferences("img", 0)
-            prefs?.edit()?.putString("img", sImg)?.apply()
+            if(sImg != null)
+                prefs?.edit()?.putString("img", sImg)?.apply()
 
 
             setResult(Activity.RESULT_OK, intent)

@@ -100,6 +100,12 @@ class MainInfoFragment : Fragment() {
             binding.mainInfoGit.append(" : ${git}")
             binding.mainInfoMore.text = "${more}"
 
+            val sImg = prefs?.getString("img", "")
+            val encodeByte = Base64.decode(sImg, Base64.DEFAULT)
+            val img = BitmapFactory.decodeByteArray(encodeByte, 0 , encodeByte.size)
+
+            binding.mainUserImageView.setImageBitmap(img)
+
         }
 
         if(IntroActivity.mode == IntroActivity.READMODE) binding.mainInfoFab.visibility = View.GONE

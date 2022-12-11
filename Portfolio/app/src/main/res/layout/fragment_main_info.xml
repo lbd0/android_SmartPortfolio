@@ -42,7 +42,6 @@
                     android:textColor="@color/font"
                     android:textSize="20dp"
                     android:layout_marginTop="15dp"
-                    android:gravity="center"
                     android:id="@+id/main_info_name"/>
 
                 <TextView
@@ -50,9 +49,8 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textColor="@color/font"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
                     android:id="@+id/main_info_birth"/>
 
                 <TextView
@@ -60,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textColor="@color/font"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:layout_marginTop="5dp"
                     android:id="@+id/main_info_major"/>
 
@@ -69,9 +67,8 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textColor="@color/font"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
                     android:autoLink="phone"
                     android:id="@+id/main_info_phone"/>
 

@@ -110,8 +110,8 @@ class AddPortfolioActivity : AppCompatActivity() {
 
             db.close()
 
-            var intent = intent.putExtra("addPfImg", sImg)
-            setResult(Activity.RESULT_OK, intent)
+            val prefs = getSharedPreferences("pfImg", 0)
+            prefs?.edit()?.putString("pfImg", inputImg)?.apply()
             intent = intent.putExtra("addPfTitle", inputTitle)
             setResult(Activity.RESULT_OK, intent)
             intent = intent.putExtra("addPfDetail", inputDetail)
